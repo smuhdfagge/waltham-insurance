@@ -1,18 +1,51 @@
-<x-site-layout title="Services | Our Family Farm Nig. Ltd." description="Explore Our Family Farm Nig. Ltd. services including crop production, farm management, soil analysis, seed multiplication, water analysis and capacity building.">
-    <section class="pt-16 pb-16">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading bold="Our" light="Services" />
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                @foreach($services as $service)
-                    <article class="group relative overflow-hidden rounded-3xl border border-earth/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-                        <div class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-leaf transition-transform duration-300 group-hover:scale-x-100"></div>
-                        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-leaf/10 text-2xl text-leaf-dark">{{ $service->icon }}</div>
-                        <h2 class="text-xl font-bold text-earth">{{ $service->title }}</h2>
-                        <p class="mt-3 text-sm leading-7 text-earth/70">{{ $service->summary }}</p>
-                        <a href="{{ route('services.show', $service->slug) }}" class="mt-5 inline-flex items-center text-sm font-bold text-leaf-dark hover:text-earth">Learn more <span class="ml-2">→</span></a>
-                    </article>
+<x-site-layout :title="'Our services | '.config('company.legal_name')" description="Group life, fire and special perils, motor, marine, bonds, liability and other insurance services from Waltham Insurance Brokers Ltd.">
+    <x-page-hero eyebrow="What we offer" title="Our services" :breadcrumb="['Services' => null]">
+        Comprehensive insurance solutions tailored to protect your assets and personnel.
+    </x-page-hero>
+
+    <section class="bg-white py-16 sm:py-20">
+        <div class="container-site">
+            <x-section-heading eyebrow="We work with clients to" title="Our commitment to you" />
+            <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                @foreach ([
+                    'Ensure compliance with Nigerian law and international maritime law',
+                    'Determine potential risk exposures',
+                    'Provide a risk transfer mechanism to protect against such exposures',
+                    'Provide the widest coverage at the lowest cost',
+                    'Provide protection and indemnity cover against potential liabilities',
+                    'Ensure smooth and quick claim settlement, to keep cash flowing in your organisation',
+                ] as $item)
+                    <li class="flex gap-4 rounded-2xl border border-line p-5">
+                        <span class="font-display text-2xl font-bold text-accent">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="text-sm leading-6 text-ink">{{ $item }}</span>
+                    </li>
                 @endforeach
-            </div>
+            </ol>
         </div>
     </section>
+
+    <section class="bg-canvas py-16 sm:py-20">
+        <div class="container-site">
+            <x-section-heading eyebrow="Detailed breakdown" title="Insurance services" />
+            @if ($services->isEmpty())
+                <div class="card p-12 text-center text-ink-light">Our service list is being updated. Please <a href="{{ route('contact') }}" class="font-semibold text-brand">contact us</a>.</div>
+            @else
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($services as $service)
+                        <a href="{{ route('services.show', $service->slug) }}" class="card group flex flex-col p-7 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift">
+                            <div class="flex items-start justify-between">
+                                <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-white"><x-icon :name="$service->icon" class="h-6 w-6" /></span>
+                                <x-icon name="arrow-up-right" class="h-5 w-5 text-ink-light/50 transition group-hover:text-brand" />
+                            </div>
+                            <h2 class="mt-6 text-xl font-semibold">{{ $service->title }}</h2>
+                            <p class="mt-2 flex-1 text-sm leading-6 text-ink-light">{{ $service->summary }}</p>
+                            <span class="link-arrow mt-6">Read the details <x-icon name="arrow-right" class="h-4 w-4" /></span>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
+    @include('pages.partials.cta')
 </x-site-layout>

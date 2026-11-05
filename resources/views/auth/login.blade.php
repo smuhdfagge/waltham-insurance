@@ -1,8 +1,8 @@
 <x-guest-layout>
     <div class="mb-8">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-leaf-dark">Welcome back</p>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-earth">Sign in to your workspace</h2>
-        <p class="mt-2 text-sm leading-6 text-earth-light">Manage your public insurance website.</p>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-dark">Welcome back</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink">Sign in to your workspace</h2>
+        <p class="mt-2 text-sm leading-6 text-ink-light">Manage services, leadership profiles and client enquiries.</p>
     </div>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -32,19 +32,19 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-earth/25 text-leaf shadow-sm focus:ring-leaf" name="remember">
-                <span class="ms-2 text-sm text-earth-light">{{ __('Remember me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded border-ink/25 text-brand shadow-sm focus:ring-brand" name="remember">
+                <span class="ms-2 text-sm text-ink-light">{{ __('Remember me') }}</span>
             </label>
         </div>
 
         <div class="mt-6 flex flex-col-reverse items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
             @if (Route::has('password.request'))
-                <a class="text-sm font-semibold text-earth-light underline decoration-leaf decoration-2 underline-offset-4 transition hover:text-leaf-dark focus:outline-none focus:ring-2 focus:ring-leaf" href="{{ route('password.request') }}">
+                <a class="text-sm font-semibold text-ink-light underline decoration-brand decoration-2 underline-offset-4 transition hover:text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="justify-center rounded-xl bg-leaf px-6 py-3 font-bold text-white shadow-sm transition hover:bg-leaf-dark focus:bg-leaf-dark focus:ring-leaf active:bg-leaf-dark">
+            <x-primary-button class="justify-center rounded-xl bg-brand px-6 py-3 font-bold text-white shadow-sm transition hover:bg-brand-dark focus:bg-brand-dark focus:ring-brand active:bg-brand-dark">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

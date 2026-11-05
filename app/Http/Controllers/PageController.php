@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GalleryImage;
 use App\Models\Service;
 use App\Models\TeamMember;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home()
     {
-        $services = Service::orderBy('sort_order')->take(8)->get();
-        $team = TeamMember::orderBy('sort_order')->get();
-        $gallery = GalleryImage::orderBy('sort_order')->take(8)->get();
+        $services = Service::orderBy('sort_order')->get();
 
-        return view('pages.home', compact('services', 'team', 'gallery'));
+        return view('pages.home', compact('services'));
     }
 
     public function about()
@@ -23,15 +19,39 @@ class PageController extends Controller
         return view('pages.about');
     }
 
-    public function ourTeam()
+    public function whatWeDo()
     {
-        $team = TeamMember::orderBy('sort_order')->get();
-
-        return view('pages.our-team', compact('team'));
+        return view('pages.what-we-do');
     }
 
-    public function contact()
+    public function visionMission()
     {
-        return view('pages.contact');
+        return view('pages.vision-mission');
+    }
+
+    public function directors()
+    {
+        $people = TeamMember::where('group', 'board')->orderBy('sort_order')->get();
+
+        return view('pages.directors', compact('people'));
+    }
+
+    public function management()
+    {
+        $people = TeamMember::where('group', 'management')->orderBy('sort_order')->get();
+
+        return view('pages.management', compact('people'));
+    }
+
+    public function proposal()
+    {
+        $services = Service::orderBy('sort_order')->get();
+
+        return view('pages.proposal', compact('services'));
+    }
+
+    public function claims()
+    {
+        return view('pages.claims');
     }
 }

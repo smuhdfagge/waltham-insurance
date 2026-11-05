@@ -26,7 +26,7 @@ class AdminServiceController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validated($request);
-        $data['icon'] = $data['icon'] ?: '🌾';
+        $data['icon'] = $data['icon'] ?: 'shield';
 
         $service = Service::create($data);
         $this->clearPublicServiceCache($service->slug);
@@ -43,7 +43,7 @@ class AdminServiceController extends Controller
     {
         $oldSlug = $service->slug;
         $data = $this->validated($request, $service);
-        $data['icon'] = $data['icon'] ?: '🌾';
+        $data['icon'] = $data['icon'] ?: 'shield';
 
         $service->update($data);
         $this->clearPublicServiceCache($oldSlug, $service->slug);

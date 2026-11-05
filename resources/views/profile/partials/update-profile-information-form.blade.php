@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-xl font-extrabold text-earth">
+        <h2 class="text-xl font-extrabold text-ink">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-earth-light">
+        <p class="mt-1 text-sm text-ink-light">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -30,16 +30,16 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-earth">
+                    <p class="text-sm mt-2 text-ink">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-earth-light hover:text-earth rounded-md focus:outline-none focus:ring-2 focus:ring-leaf">
+                        <button form="send-verification" class="underline text-sm text-ink-light hover:text-ink rounded-md focus:outline-none focus:ring-2 focus:ring-brand">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-leaf-dark">
+                        <p class="mt-2 font-medium text-sm text-brand-dark">
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
@@ -56,7 +56,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-earth-light"
+                    class="text-sm text-ink-light"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

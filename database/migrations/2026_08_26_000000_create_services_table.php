@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('summary', 500);
             $table->text('description');
-            $table->string('icon')->default('🌾');
+            $table->string('icon')->default('shield');
             $table->integer('sort_order')->default(0);
             $table->timestamps();
         });

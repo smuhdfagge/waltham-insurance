@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('gallery_images', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category')->default('Crops');
+            $table->string('category')->default('Offices');
             $table->string('image_url');
             $table->text('description')->nullable();
             $table->integer('sort_order')->default(0);

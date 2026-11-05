@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\AdminServiceController;
 use App\Http\Controllers\AdminEnquiryController;
@@ -13,14 +12,16 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamMemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'waltham.home')->name('home');
-Route::view('/about', 'waltham.about')->name('about');
-Route::view('/what-we-do', 'waltham.what-we-do')->name('what-we-do');
-Route::view('/vision-mission', 'waltham.vision-mission')->name('vision-mission');
-Route::view('/directors', 'waltham.directors')->name('directors');
-Route::view('/management', 'waltham.management')->name('management');
-Route::view('/services', 'waltham.services')->name('services.index');
-Route::view('/proposal', 'waltham.proposal')->name('proposal');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/what-we-do', [PageController::class, 'whatWeDo'])->name('what-we-do');
+Route::get('/vision-mission', [PageController::class, 'visionMission'])->name('vision-mission');
+Route::get('/directors', [PageController::class, 'directors'])->name('directors');
+Route::get('/management', [PageController::class, 'management'])->name('management');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/proposal', [PageController::class, 'proposal'])->name('proposal');
+Route::get('/claims', [PageController::class, 'claims'])->name('claims');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

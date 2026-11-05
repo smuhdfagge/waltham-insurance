@@ -1,30 +1,71 @@
-<x-site-layout title="Contact | Our Family Farm Nig. Ltd." description="Contact Our Family Farm Nig. Ltd. for agricultural production, farm consultancy, soil and water testing, capacity building and farm design services.">
-    <section class="pt-16 pb-16">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading bold="Get" light="in touch" />
-            <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-                <div class="space-y-6">
-                    <div class="rounded-[2rem] bg-earth p-8 text-white shadow-lg">
-                        <h3 class="text-2xl font-bold">Head Office</h3>
-                        <p class="mt-4 text-white/85">11A Port Louis Close, Tudun Yola, C. Layout, Kano, Nigeria</p>
-                        <p class="mt-2 text-white/85">+234 805 806 1627</p>
-                        <p class="mt-2 text-white/85">abumuniru1@gmail.com</p>
-                    </div>
-                    <div class="rounded-[2rem] bg-earth p-8 text-white shadow-lg">
-                        <h3 class="text-2xl font-bold">Branch Office</h3>
-                        <p class="mt-4 text-white/85">Beside Nagari Café, Opposite Police Headquarters, Hadejia, Jigawa State, Nigeria</p>
+@php
+    $company = config('company');
+@endphp
+
+<x-site-layout :title="'Contact us | '.$company['legal_name']" :description="'Contact '.$company['legal_name'].' in Garki, Abuja for insurance broking and risk management advice.'">
+    <x-page-hero eyebrow="Get in touch" title="Contact us" :breadcrumb="['Contact' => null]">
+        We would love to hear from you. Request a proposal, ask about a class of insurance or notify us of a claim.
+    </x-page-hero>
+
+    <section class="bg-canvas py-16 sm:py-20">
+        <div class="container-site grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+            <div class="space-y-5">
+                <div class="card p-6">
+                    <div class="flex gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand"><x-icon name="phone" class="h-5 w-5" /></span>
+                        <div>
+                            <h2 class="text-sm text-ink-light">Phone</h2>
+                            <a href="tel:{{ $company['phone_raw'] }}" class="mt-0.5 block text-lg font-semibold hover:text-brand">{{ $company['phone'] }}</a>
+                            @if ($company['phone_secondary'])
+                                <a href="tel:{{ $company['phone_secondary_raw'] }}" class="block text-lg font-semibold hover:text-brand">{{ $company['phone_secondary'] }}</a>
+                            @endif
+                            @if ($company['hours'])
+                                <p class="mt-1 text-xs text-ink-light">{{ $company['hours'] }}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-earth/10">
+                <div class="card p-6">
+                    <div class="flex gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand"><x-icon name="mail" class="h-5 w-5" /></span>
+                        <div class="min-w-0">
+                            <h2 class="text-sm text-ink-light">Email</h2>
+                            <a href="mailto:{{ $company['email'] }}" class="mt-0.5 block break-all text-lg font-semibold hover:text-brand">{{ $company['email'] }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <div class="flex gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-dark"><x-icon name="map-pin" class="h-5 w-5" /></span>
+                        <div>
+                            <h2 class="text-sm text-ink-light">{{ $company['head_office']['name'] }}</h2>
+                            <p class="mt-0.5 text-base font-semibold leading-7">{{ $company['head_office']['address'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl bg-ink p-6 text-sm leading-6 text-white/75">
+                    <p class="flex items-center gap-2 font-semibold text-white"><x-icon name="shield-check" class="h-5 w-5 text-accent" /> {{ $company['legal_name'] }}</p>
+                    <p class="mt-2">{{ $company['rc_number'] }}. Licensed by the {{ $company['license'] }} and a member of the {{ $company['membership'] }}.</p>
+                </div>
+            </div>
+
+            <div id="enquiry" class="card scroll-mt-28 p-6 sm:p-10">
+                <h2 class="text-2xl font-bold">Send us a message</h2>
+                <p class="mt-2 text-sm text-ink-light">Fields marked <span class="text-alert">*</span> are required.</p>
+                <div class="mt-8">
                     <livewire:contact-form />
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="px-4 pb-20 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl overflow-hidden rounded-[2rem] shadow-xl ring-1 ring-earth/10">
-            <iframe src="https://www.google.com/maps?q=Kano%20Nigeria&output=embed" class="h-[420px] w-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Our Family Farm Nig. Ltd. locations in Kano and Hadejia"></iframe>
-        </div>
-    </section>
+    @if (! empty($company['map_query']))
+        <section class="bg-canvas pb-20">
+            <div class="container-site">
+                <div class="overflow-hidden rounded-2xl border border-line shadow-soft">
+                    <iframe src="https://www.google.com/maps?q={{ urlencode($company['map_query']) }}&output=embed" class="h-[420px] w-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Map showing the {{ $company['legal_name'] }} head office"></iframe>
+                </div>
+            </div>
+        </section>
+    @endif
 </x-site-layout>

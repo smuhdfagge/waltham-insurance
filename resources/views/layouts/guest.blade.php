@@ -4,39 +4,38 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="robots" content="noindex, nofollow">
 
-        <title>{{ config('app.name', 'Waltham Insurance Brokers Ltd.') }}</title>
+        <title>Sign in · {{ config('company.name') }}</title>
+        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
-        <!-- Fonts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen bg-cream font-sans text-earth antialiased">
+    <body class="min-h-screen bg-canvas font-sans text-ink antialiased">
         <div class="grid min-h-screen lg:grid-cols-[0.9fr_1.1fr]">
-            <aside class="relative hidden overflow-hidden bg-earth px-10 py-10 text-white lg:flex lg:flex-col lg:justify-between xl:px-16">
-                <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full border-[36px] border-leaf/20"></div>
-                <div class="relative">
-                    <a href="{{ route('home') }}" class="inline-flex items-center gap-3">
-                        <img src="{{ asset('logo.png') }}" alt="Waltham Insurance Brokers Ltd. logo" class="h-14 w-18 object-contain">
-                        <span class="leading-none"><span class="block text-sm font-extrabold tracking-[0.12em]">WALTHAM</span><span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">Insurance Brokers Ltd.</span></span>
-                    </a>
+            <aside class="relative isolate hidden overflow-hidden bg-ink px-10 py-10 text-white lg:flex lg:flex-col lg:justify-between xl:px-16">
+                <div class="hero-grid absolute inset-0 -z-10" aria-hidden="true"></div>
+                <div class="absolute -right-32 -top-32 -z-10 h-96 w-96 rounded-full bg-brand/40 blur-3xl" aria-hidden="true"></div>
+                <div>
+                    <a href="{{ route('home') }}" class="inline-flex"><x-logo tone="light" size="lg" /></a>
                     <div class="mt-24 max-w-md">
-                        <p class="text-xs font-bold uppercase tracking-[0.25em] text-leaf-light">Admin workspace</p>
-                        <h1 class="mt-5 font-display text-5xl font-bold leading-tight text-white xl:text-6xl">Keep your risk strategy moving.</h1>
-                        <p class="mt-6 max-w-sm text-base leading-8 text-white/70">Manage services, leadership, and client enquiries from one place.</p>
+                        <p class="eyebrow !text-brand-light">Admin workspace</p>
+                        <h1 class="mt-5 font-display text-5xl font-bold leading-tight text-white">Keep your risk strategy moving.</h1>
+                        <p class="mt-6 max-w-sm text-base leading-8 text-white/70">Manage services, leadership profiles and client enquiries from one place.</p>
                     </div>
                 </div>
-                <p class="relative text-sm italic text-leaf-light">Welcome to our Business World.</p>
+                <p class="flex items-center gap-2 text-sm text-white/60"><x-icon name="lock" class="h-4 w-4" /> Authorised staff only. Activity may be monitored.</p>
             </aside>
 
             <main class="flex min-h-screen flex-col justify-center px-5 py-8 sm:px-10 lg:px-16 xl:px-24">
                 <div class="mx-auto w-full max-w-md">
                     <div class="mb-10 lg:hidden">
-                        <a href="{{ route('home') }}" class="inline-flex items-center gap-3">
-                            <img src="{{ asset('logo.png') }}" alt="Waltham Insurance Brokers Ltd. logo" class="h-12 w-16 object-contain">
-                            <span class="leading-none"><span class="block text-sm font-extrabold tracking-[0.12em] text-earth">WALTHAM</span><span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-earth-light">Insurance Brokers Ltd.</span></span>
-                        </a>
+                        <a href="{{ route('home') }}" class="inline-flex"><x-logo /></a>
                     </div>
-                    {{ $slot }}
+                    <div class="rounded-2xl border border-line bg-white p-6 shadow-soft sm:p-8">
+                        {{ $slot }}
+                    </div>
+                    <p class="mt-6 text-center text-sm text-ink-light"><a href="{{ route('home') }}" class="font-semibold hover:text-brand">← Back to the website</a></p>
                 </div>
             </main>
         </div>

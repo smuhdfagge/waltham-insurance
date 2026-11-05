@@ -1,11 +1,11 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-xl font-extrabold text-earth">
+        <h2 class="text-xl font-extrabold text-ink">
             {{ __('Delete Account') }}
         </h2>
 
-        <p class="mt-1 text-sm text-earth-light">
-            {{ __('This removes your sign-in for good. Website content you added (services, photos, team members) stays in place.') }}
+        <p class="mt-1 text-sm text-ink-light">
+            {{ __('This removes your sign-in for good. Website content you added (services, team members) stays in place.') }}
         </p>
     </header>
 
@@ -19,11 +19,11 @@
             @csrf
             @method('delete')
 
-            <h2 class="text-xl font-extrabold text-earth">
+            <h2 class="text-xl font-extrabold text-ink">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-earth-light">
+            <p class="mt-1 text-sm text-ink-light">
                 {{ __('Enter your password to confirm. This can’t be undone.') }}
             </p>
 

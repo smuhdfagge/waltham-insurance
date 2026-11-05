@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactSubmission;
-use App\Models\GalleryImage;
 use App\Models\Service;
 use App\Models\TeamMember;
 use Illuminate\Support\Carbon;
@@ -19,10 +18,10 @@ class DashboardController extends Controller
 
         return view('dashboard', [
             'stats' => [
-                ['label' => 'Services', 'value' => Service::count(), 'note' => 'Published offerings', 'tone' => 'leaf', 'route' => 'admin.services.index'],
-                ['label' => 'Team members', 'value' => TeamMember::count(), 'note' => 'People on the site', 'tone' => 'earth', 'route' => 'team-members.index'],
-                ['label' => 'Gallery images', 'value' => GalleryImage::count(), 'note' => 'Photos on show', 'tone' => 'sun', 'route' => 'gallery-images.index'],
-                ['label' => 'New enquiries', 'value' => $newCount, 'note' => $newCount ? 'Waiting for a reply' : 'All caught up', 'tone' => 'berry', 'route' => 'admin.enquiries.index', 'query' => ['status' => 'new']],
+                ['label' => 'Services', 'value' => Service::count(), 'note' => 'Insurance services listed', 'tone' => 'brand', 'route' => 'admin.services.index'],
+                ['label' => 'Board of directors', 'value' => TeamMember::where('group', 'board')->count(), 'note' => 'Shown on /directors', 'tone' => 'ink', 'route' => 'team-members.index'],
+                ['label' => 'Management', 'value' => TeamMember::where('group', 'management')->count(), 'note' => 'Shown on /management', 'tone' => 'accent', 'route' => 'team-members.index'],
+                ['label' => 'New enquiries', 'value' => $newCount, 'note' => $newCount ? 'Waiting for a reply' : 'All caught up', 'tone' => 'alert', 'route' => 'admin.enquiries.index', 'query' => ['status' => 'new']],
             ],
             'recentSubmissions' => ContactSubmission::latest()->take(6)->get(),
             'trend' => $this->enquiryTrend(),
@@ -69,10 +68,10 @@ class DashboardController extends Controller
         $all = max(1, $counts->sum());
 
         return collect([
-            'new' => ['label' => 'New', 'colour' => 'bg-leaf'],
-            'contacted' => ['label' => 'Contacted', 'colour' => 'bg-sun'],
-            'resolved' => ['label' => 'Resolved', 'colour' => 'bg-earth'],
-            'archived' => ['label' => 'Archived', 'colour' => 'bg-earth-light/50'],
+            'new' => ['label' => 'New', 'colour' => 'bg-brand'],
+            'contacted' => ['label' => 'Contacted', 'colour' => 'bg-accent'],
+            'resolved' => ['label' => 'Resolved', 'colour' => 'bg-ink'],
+            'archived' => ['label' => 'Archived', 'colour' => 'bg-ink-light/50'],
         ])->map(fn ($meta, $status) => $meta + [
             'status' => $status,
             'count' => (int) $counts->get($status, 0),

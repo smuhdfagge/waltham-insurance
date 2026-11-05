@@ -1,33 +1,154 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/plus-jakarta-sans';
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 
+/*
+ * Waltham Insurance design tokens.
+ *
+ * ink    – deep navy used for text, dark surfaces and the footer
+ * brand  – the primary action blue (buttons, links, focus rings)
+ * accent – the Waltham orange, used sparingly for highlights
+ * canvas – the cool off-white page background
+ * alert  – errors and destructive actions
+ */
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Inter', sans-serif;
-  --font-serif: Georgia, serif;
-  --color-leaf: #1b348c;
-  --color-leaf-dark: #0f1d50;
-  --color-leaf-light: #aebce9;
-  --color-earth: #161615;
-  --color-earth-dark: #0b153c;
-  --color-earth-light: #62605b;
-  --color-sun: #f37b0a;
-  --color-sun-dark: #b85704;
-  --color-cream: #f8fafc;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0A1434;
+  --color-ink-dark: #050B20;
+  --color-ink-light: #586480;
+
+  --color-brand: #1B348C;
+  --color-brand-dark: #12256A;
+  --color-brand-light: #A5B6F2;
+
+  --color-accent: #F37B0A;
+  --color-accent-dark: #B85704;
+
+  --color-canvas: #F5F7FB;
+  --color-line: #E2E7F0;
+
+  --color-alert: #C2412D;
+  --color-alert-dark: #962F1F;
+
+  --shadow-soft: 0 1px 2px rgb(10 20 52 / 0.04), 0 12px 32px -8px rgb(10 20 52 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(10 20 52 / 0.04), 0 24px 48px -12px rgb(10 20 52 / 0.22);
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { @apply font-sans text-earth bg-cream; line-height: 1.7; }
-  h1, h2, h3, h4, h5, h6 { @apply font-display text-earth; }
-  .font-display { font-family: 'Inter', sans-serif; }
-  .font-serif { font-family: Georgia, serif; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink;
+    line-height: 1.65;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-ink;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
   [x-cloak] { display: none !important; }
-  [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .35s ease, transform .35s ease; }
-  [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    [data-reveal], [data-reveal].revealed { transition: none; opacity: 1; transform: none; }
+    [data-reveal], [data-reveal].revealed {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-brand;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 bg-brand text-white shadow-sm hover:bg-brand-dark;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 border border-line bg-white text-ink hover:border-ink/30 hover:bg-canvas;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60 border border-white/25 bg-white/5 text-white hover:bg-white/15;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-white shadow-soft;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition hover:text-brand-dark;
+  }
+
+  .field-input {
+    @apply block w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-light/70 shadow-sm transition focus:border-brand focus:ring-2 focus:ring-brand/20 focus:outline-none;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+
+  /* Long-form copy rendered from Markdown (service descriptions). */
+  .rich-text {
+    @apply text-base leading-8 text-ink-light;
+  }
+  .rich-text > * + * { @apply mt-5; }
+  .rich-text h2, .rich-text h3 {
+    @apply mt-10 font-display text-xl font-semibold text-ink;
+  }
+  .rich-text h4 { @apply mt-8 text-base font-semibold text-ink; }
+  .rich-text strong { @apply font-semibold text-ink; }
+  .rich-text a { @apply font-semibold text-brand underline underline-offset-4; }
+  .rich-text ul { @apply grid gap-2.5; }
+  .rich-text ol { @apply list-decimal space-y-2 pl-5; }
+  .rich-text ul > li {
+    @apply relative rounded-lg border border-line bg-canvas/60 py-2.5 pl-11 pr-4 text-sm leading-6 text-ink;
+  }
+  .rich-text ul > li::before {
+    content: '';
+    @apply absolute left-4 top-[1.1rem] h-2 w-2 rounded-full bg-accent;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 75%);
   }
 }

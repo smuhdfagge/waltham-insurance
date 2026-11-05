@@ -20,7 +20,7 @@ class AdminUsersTest extends TestCase
 
     public function test_authenticated_users_can_view_and_search_users(): void
     {
-        $viewer = User::factory()->create(['name' => 'Farm Manager']);
+        $viewer = User::factory()->create(['name' => 'Office Manager']);
         User::factory()->create(['name' => 'Harvest Coordinator', 'email' => 'harvest@example.com']);
         User::factory()->create(['name' => 'Poultry Lead', 'email' => 'poultry@example.com']);
 

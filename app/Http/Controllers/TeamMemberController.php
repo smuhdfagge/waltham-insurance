@@ -70,6 +70,7 @@ class TeamMemberController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
+            'group' => ['required', 'in:'.implode(',', array_keys(TeamMember::GROUPS))],
             'name' => ['required', 'string', 'max:255'],
             'role' => ['required', 'string', 'max:255'],
             'title' => ['nullable', 'string', 'max:255'],
