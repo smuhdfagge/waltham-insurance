@@ -16,7 +16,7 @@ return [
     'legal_name' => env('COMPANY_LEGAL_NAME', 'Waltham Insurance Brokers Ltd.'),
     'tagline' => env('COMPANY_TAGLINE', 'Welcome to our Business World'),
     'slogan' => env('COMPANY_SLOGAN', 'Good Hands For The Good Life'),
-    'rc_number' => env('COMPANY_RC_NUMBER', 'RC 410208'),
+    'rc_number' => env('COMPANY_RC_NUMBER', 'RC 150960'),
     'founded' => (int) env('COMPANY_FOUNDED', 1990),
     'license' => env('COMPANY_LICENSE', 'National Insurance Commission (NAICOM)'),
     'membership' => env('COMPANY_MEMBERSHIP', 'Nigerian Council of Registered Insurance Brokers (NCRIB)'),

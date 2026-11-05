@@ -1,6 +1,6 @@
 # Waltham Insurance Brokers Ltd.
 
-Website and admin dashboard for Waltham Insurance Brokers Ltd. (RC 410208), a NAICOM-licensed insurance broker and NCRIB member based in Garki, Abuja.
+Website and admin dashboard for Waltham Insurance Brokers Ltd. (RC 150960), a NAICOM-licensed insurance broker and NCRIB member based in Garki, Abuja.
 
 Built with Laravel 12, Livewire 3, Alpine.js and Tailwind CSS 4.
 

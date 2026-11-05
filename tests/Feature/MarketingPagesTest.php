@@ -24,6 +24,7 @@ class MarketingPagesTest extends TestCase
 
         $response->assertOk();
         $response->assertSeeText('Waltham Insurance Brokers Ltd');
+        $response->assertSeeText('RC 150960');
         $response->assertSeeText('Group Life Assurance');
     }
 
