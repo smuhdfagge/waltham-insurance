@@ -26,13 +26,19 @@ return [
     'phone_raw' => env('COMPANY_PHONE_RAW', '+2348036613580'),
     'phone_secondary' => env('COMPANY_PHONE_SECONDARY', '0806 771 3959'),
     'phone_secondary_raw' => env('COMPANY_PHONE_SECONDARY_RAW', '+2348067713959'),
-    'whatsapp' => env('COMPANY_WHATSAPP'),
+    // WhatsApp chat and social links below are defaults only: once saved in
+    // the admin (Social & WhatsApp page), the admin values are used instead.
+    'whatsapp_number' => env('COMPANY_WHATSAPP_NUMBER'),
+    'whatsapp_message' => env('COMPANY_WHATSAPP_MESSAGE', 'Hello Waltham Insurance Brokers, I would like to make an enquiry.'),
+    'whatsapp_country_code' => env('COMPANY_WHATSAPP_COUNTRY_CODE', '234'),
     'hours' => env('COMPANY_HOURS'),
 
     'linkedin' => env('COMPANY_LINKEDIN'),
     'facebook' => env('COMPANY_FACEBOOK'),
     'instagram' => env('COMPANY_INSTAGRAM'),
     'x' => env('COMPANY_X'),
+    'youtube' => env('COMPANY_YOUTUBE'),
+    'tiktok' => env('COMPANY_TIKTOK'),
 
     'head_office' => [
         'name' => 'Head office',

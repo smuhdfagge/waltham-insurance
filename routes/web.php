@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\AdminServiceController;
+use App\Http\Controllers\AdminSocialSettingsController;
 use App\Http\Controllers\AdminEnquiryController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PageController;
@@ -35,6 +36,8 @@ Route::get('/dashboard', DashboardController::class)
 
 Route::middleware('auth')->group(function () {
     Route::resource('admin/enquiries', AdminEnquiryController::class)->only(['index', 'show', 'update', 'destroy'])->names('admin.enquiries');
+    Route::get('admin/settings/social', [AdminSocialSettingsController::class, 'edit'])->name('admin.settings.social');
+    Route::put('admin/settings/social', [AdminSocialSettingsController::class, 'update'])->name('admin.settings.social.update');
     Route::resource('admin/users', AdminUserController::class)->only(['index', 'create', 'store', 'destroy'])->names('admin.users');
     Route::resource('admin/services', AdminServiceController::class)->except('show')->names('admin.services');
     Route::resource('gallery-images', GalleryImageController::class)->except('show');

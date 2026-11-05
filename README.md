@@ -15,7 +15,7 @@ Built with Laravel 12, Livewire 3, Alpine.js and Tailwind CSS 4.
 7. `npm run build`
 8. `php artisan serve`
 
-Already have a database from an earlier version? Run `php artisan migrate` (adds the directors/management group to team members), then `php artisan db:seed` to load Waltham's services and people. The seeder updates records by slug or name, so it is safe to run again. Old sample services or team members it doesn't know about stay in place; remove them from the admin.
+Already have a database from an earlier version? Run `php artisan migrate` (adds the directors/management group to team members and the site settings table), then `php artisan db:seed` to load Waltham's services and people. The seeder updates records by slug or name, so it is safe to run again. Old sample services or team members it doesn't know about stay in place; remove them from the admin.
 
 ## Pages
 
@@ -33,7 +33,7 @@ Already have a database from an earlier version? Run `php artisan migrate` (adds
 
 ## Company details
 
-Contact and regulatory details come from [config/company.php](config/company.php). The defaults are Waltham's published details; any of them can be overridden with `COMPANY_*` variables in `.env` (see `.env.example`). The contact form sends enquiries to `COMPANY_EMAIL` (default `info@waltham.com.ng`). Optional values such as `COMPANY_HOURS`, `COMPANY_WHATSAPP` and social links only appear on the site when set.
+Contact and regulatory details come from [config/company.php](config/company.php). The defaults are Waltham's published details; any of them can be overridden with `COMPANY_*` variables in `.env` (see `.env.example`). The contact form sends enquiries to `COMPANY_EMAIL` (default `info@waltham.com.ng`). Optional values such as `COMPANY_HOURS` only appear on the site when set. Social links and WhatsApp are managed in the admin (see below).
 
 ## Admin dashboard
 
@@ -43,6 +43,7 @@ Sign in at `/login` to reach `/dashboard`.
 - **Enquiries**: search, filter by status, reply by email or phone, update status, remove.
 - **Services**: add, edit and remove services. Descriptions support simple Markdown: a blank line between paragraphs, `- ` for bullet points and `### ` for sub-headings. Icons are chosen from the built-in set.
 - **Directors & management**: add people to either page, with an optional photo and bio. People without a photo show their initials.
+- **Social & WhatsApp**: links for Facebook, X, LinkedIn, Instagram, YouTube and TikTok, shown in the top bar, footer, mobile menu and contact page (empty fields are hidden). Set a WhatsApp number (local `0803…` numbers become `+234…`), an optional pre-filled message, and whether to show the floating "Chat on WhatsApp" button. Values saved here override the `COMPANY_*` defaults in `.env`.
 - **Users**: public sign-up is off; add accounts from **Users → Add user**.
 - **My profile**: change your name, email and password.
 

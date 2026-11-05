@@ -34,6 +34,13 @@
                         </div>
                     </div>
                 </div>
+                @if ($whatsappUrl ?? null)
+                    <a href="{{ $whatsappUrl }}" target="_blank" rel="noopener" class="card group flex items-center gap-4 p-6 transition hover:border-[#25D366]/60">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#25D366] text-white"><x-social-icon network="whatsapp" class="h-6 w-6" /></span>
+                        <span class="flex-1"><span class="block text-sm text-ink-light">WhatsApp</span><span class="mt-0.5 block text-lg font-semibold group-hover:text-[#128C7E]">Chat on WhatsApp</span></span>
+                        <x-icon name="arrow-up-right" class="h-5 w-5 text-ink-light/50 group-hover:text-[#128C7E]" />
+                    </a>
+                @endif
                 <div class="card p-6">
                     <div class="flex gap-4">
                         <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-dark"><x-icon name="map-pin" class="h-5 w-5" /></span>
@@ -43,6 +50,16 @@
                         </div>
                     </div>
                 </div>
+                @if (! empty($socialLinks))
+                    <div class="card p-6">
+                        <h2 class="text-sm text-ink-light">Follow us</h2>
+                        <ul class="mt-3 flex flex-wrap gap-2">
+                            @foreach ($socialLinks as $link)
+                                <li><a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm font-semibold text-ink transition hover:border-brand hover:text-brand"><x-social-icon :network="$link['key']" /> {{ $link['label'] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="rounded-2xl bg-ink p-6 text-sm leading-6 text-white/75">
                     <p class="flex items-center gap-2 font-semibold text-white"><x-icon name="shield-check" class="h-5 w-5 text-accent" /> {{ $company['legal_name'] }}</p>
                     <p class="mt-2">{{ $company['rc_number'] }}. Licensed by the {{ $company['license'] }} and a member of the {{ $company['membership'] }}.</p>

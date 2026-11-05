@@ -16,12 +16,8 @@
         ['label' => 'Claims', 'route' => 'claims'],
         ['label' => 'Contact', 'route' => 'contact'],
     ];
-    $socials = array_filter([
-        'linkedin' => $company['linkedin'] ?? null,
-        'facebook' => $company['facebook'] ?? null,
-        'instagram' => $company['instagram'] ?? null,
-        'x-social' => $company['x'] ?? null,
-    ]);
+    $socialLinks = $socialLinks ?? [];
+    $whatsappUrl = $whatsappUrl ?? null;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-pt-24">
@@ -68,6 +64,16 @@
                 <div class="flex items-center gap-6">
                     <a href="mailto:{{ $company['email'] }}" class="flex items-center gap-1.5 hover:text-white"><x-icon name="mail" class="h-3.5 w-3.5" /> {{ $company['email'] }}</a>
                     <a href="tel:{{ $company['phone_raw'] }}" class="flex items-center gap-1.5 hover:text-white"><x-icon name="phone" class="h-3.5 w-3.5" /> {{ $company['phone'] }}</a>
+                    @if ($whatsappUrl)
+                        <a href="{{ $whatsappUrl }}" target="_blank" rel="noopener" class="hidden items-center gap-1.5 hover:text-white lg:flex"><x-social-icon network="whatsapp" class="h-3.5 w-3.5 text-[#25D366]" /> WhatsApp</a>
+                    @endif
+                    @if ($socialLinks)
+                        <ul class="hidden items-center gap-3 border-l border-white/15 pl-6 lg:flex" aria-label="Follow us">
+                            @foreach ($socialLinks as $link)
+                                <li><a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="block text-white/60 transition hover:text-white" aria-label="{{ $link['label'] }}" title="{{ $link['label'] }}"><x-social-icon :network="$link['key']" class="h-3.5 w-3.5" /></a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
@@ -193,6 +199,16 @@
                 <div class="space-y-3 border-t border-line p-5">
                     <a href="{{ route('contact', ['service' => 'Request a proposal']) }}" class="btn-primary w-full">Request a proposal</a>
                     <a href="tel:{{ $company['phone_raw'] }}" class="btn-secondary w-full"><x-icon name="phone" class="h-4 w-4" /> {{ $company['phone'] }}</a>
+                    @if ($whatsappUrl)
+                        <a href="{{ $whatsappUrl }}" target="_blank" rel="noopener" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1eb457]"><x-social-icon network="whatsapp" class="h-4 w-4" /> Chat on WhatsApp</a>
+                    @endif
+                    @if ($socialLinks)
+                        <ul class="flex justify-center gap-2 pt-2" aria-label="Follow us">
+                            @foreach ($socialLinks as $link)
+                                <li><a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-ink transition hover:border-brand hover:text-brand" aria-label="{{ $link['label'] }}"><x-social-icon :network="$link['key']" /></a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </aside>
         </div>
@@ -208,10 +224,10 @@
                         <x-logo tone="light" />
                         <p class="mt-5 max-w-xs text-sm leading-7">A fully integrated risk management and insurance broking firm, helping Nigerian businesses and individuals manage their risks since {{ $company['founded'] }}.</p>
                         <p class="mt-4 font-display text-sm font-semibold text-accent">{{ $company['slogan'] }}</p>
-                        @if ($socials)
-                            <ul class="mt-6 flex gap-2">
-                                @foreach ($socials as $network => $url)
-                                    <li><a href="{{ $url }}" target="_blank" rel="noopener" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-white/80 transition hover:border-white/40 hover:text-white" aria-label="{{ ucfirst(str_replace('-social', '', $network)) }}"><x-icon :name="$network" class="h-4 w-4" /></a></li>
+                        @if ($socialLinks)
+                            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Follow us">
+                                @foreach ($socialLinks as $link)
+                                    <li><a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-white/80 transition hover:border-white/40 hover:bg-white/5 hover:text-white" aria-label="{{ $link['label'] }}" title="{{ $link['label'] }}"><x-social-icon :network="$link['key']" /></a></li>
                                 @endforeach
                             </ul>
                         @endif
@@ -240,6 +256,9 @@
                             <li class="flex gap-3"><x-icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span>{{ $company['head_office']['address'] }}</span></li>
                             <li class="flex gap-3"><x-icon name="phone" class="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span><a href="tel:{{ $company['phone_raw'] }}" class="hover:text-white">{{ $company['phone'] }}</a>@if ($company['phone_secondary']), <a href="tel:{{ $company['phone_secondary_raw'] }}" class="hover:text-white">{{ $company['phone_secondary'] }}</a>@endif</span></li>
                             <li class="flex gap-3"><x-icon name="mail" class="mt-0.5 h-4 w-4 shrink-0 text-accent" /><a href="mailto:{{ $company['email'] }}" class="break-all hover:text-white">{{ $company['email'] }}</a></li>
+                            @if ($whatsappUrl)
+                                <li class="flex gap-3"><x-social-icon network="whatsapp" class="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" /><a href="{{ $whatsappUrl }}" target="_blank" rel="noopener" class="hover:text-white">Chat on WhatsApp</a></li>
+                            @endif
                             @if ($company['hours'])
                                 <li class="flex gap-3"><x-icon name="clock" class="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span>{{ $company['hours'] }}</span></li>
                             @endif
@@ -248,16 +267,18 @@
                 </div>
             </div>
             <div class="border-t border-white/10">
-                <div class="container-site flex flex-col gap-3 py-6 text-xs leading-6 text-white/50 md:flex-row md:items-center md:justify-between">
+                <div class="container-site flex flex-col gap-3 py-6 text-xs leading-6 text-white/50 md:flex-row md:items-center md:justify-between {{ ($showWhatsappButton ?? false) ? 'pb-24' : '' }}">
                     <p>© {{ date('Y') }} {{ $company['legal_name'] }} {{ $company['rc_number'] }}. All rights reserved.</p>
                     <p class="md:text-right">Licensed by the {{ $company['license'] }}. Member of the {{ $company['membership'] }}.</p>
                 </div>
             </div>
         </footer>
 
-        @if (! empty($company['whatsapp']))
-            <a href="{{ $company['whatsapp'] }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" class="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lift transition hover:scale-105">
-                <svg aria-hidden="true" viewBox="0 0 24 24" class="h-7 w-7 fill-current"><path d="M20.5 3.5C18.4 1.4 15.6 0.5 12.8 0.5A11.1 11.1 0 0 0 1.7 12.1c-.7 2.4-.1 5 .9 7.1L1 23l3.9-1c2.1 1.1 4.4 1.7 6.8 1.7h.1c3.2 0 6.1-1.1 8.3-3.2 2.2-2.1 3.3-5 3.3-8.1 0-2.8-.9-5.3-2.9-7.3ZM12.8 20.3c-2 0-4-.6-5.7-1.7l-.4-.2-2.3.6.6-2.2-.3-.5A8.9 8.9 0 0 1 3.7 12c0-2.5.9-4.8 2.7-6.6a9 9 0 0 1 6.4-2.7c2.3 0 4.5.9 6.1 2.4 1.6 1.6 2.5 3.8 2.5 6.1 0 4.5-3.6 8.1-8.1 8.1Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.1-.2.1-.4.1s-.9-.3-1.7-.9c-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.3-.4c.1-.1.1-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.5-.8-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.1 1.6 2.5 3.9 3.5.5.2.9.3 1.2.4.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.3-.6.3-1 .2-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+        @if ($showWhatsappButton ?? false)
+            <a href="{{ $whatsappUrl }}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"
+               class="group fixed bottom-5 right-5 z-40 inline-flex h-14 items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-4 text-white shadow-lift transition hover:bg-[#1eb457] sm:pr-5">
+                <x-social-icon network="whatsapp" class="h-7 w-7" />
+                <span class="hidden text-sm font-semibold sm:inline">Chat on WhatsApp</span>
             </a>
         @endif
 

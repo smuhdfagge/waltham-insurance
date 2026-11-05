@@ -4,6 +4,7 @@
         ['label' => 'Enquiries', 'icon' => 'inbox', 'route' => 'admin.enquiries.index', 'active' => 'admin.enquiries.*', 'badge' => $newEnquiryCount ?? 0],
         ['label' => 'Services', 'icon' => 'shield', 'route' => 'admin.services.index', 'active' => 'admin.services.*'],
         ['label' => 'Directors & management', 'icon' => 'users', 'route' => 'team-members.index', 'active' => 'team-members.*'],
+        ['label' => 'Social & WhatsApp', 'icon' => 'chat', 'route' => 'admin.settings.social', 'active' => 'admin.settings.social*'],
         ['label' => 'Users', 'icon' => 'lock', 'route' => 'admin.users.index', 'active' => 'admin.users.*'],
         ['label' => 'My profile', 'icon' => 'user-circle', 'route' => 'profile.edit', 'active' => 'profile.*'],
     ];

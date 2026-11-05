@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\ContactSubmission;
 use App\Models\Service;
+use App\Support\SocialSettings;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -28,6 +29,15 @@ class AppServiceProvider extends ServiceProvider
 
         // The public header menu and footer list every insurance product. This
         // shares the cache key the admin clears whenever a product changes.
+        // Social links and WhatsApp chat, managed in the admin.
+        View::composer(['components.site-layout', 'pages.contact'], function ($view) {
+            $view->with([
+                'socialLinks' => SocialSettings::links(),
+                'whatsappUrl' => SocialSettings::whatsappUrl(),
+                'showWhatsappButton' => SocialSettings::showWhatsappButton(),
+            ]);
+        });
+
         View::composer('components.site-layout', function ($view) {
             $view->with('navServices', Cache::remember('all_services', 3600, fn () => Service::orderBy('sort_order')->get()));
         });
