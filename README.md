@@ -15,6 +15,8 @@ Built with Laravel 12, Livewire 3, Alpine.js and Tailwind CSS 4.
 7. `npm run build`
 8. `php artisan serve`
 
+To create or update only the initial administrator after setting `WALTHAM_ADMIN_EMAIL` and `WALTHAM_ADMIN_PASSWORD`, run `php artisan db:seed --class=AdminSeeder`.
+
 Already have a database from an earlier version? Run `php artisan migrate` (adds the directors/management group to team members and the site settings table), then `php artisan db:seed` to load Waltham's services and people. The seeder updates records by slug or name, so it is safe to run again. Old sample services or team members it doesn't know about stay in place; remove them from the admin.
 
 ## Pages
