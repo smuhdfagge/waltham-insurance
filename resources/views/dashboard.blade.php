@@ -110,7 +110,7 @@
             <p class="text-xs font-bold uppercase tracking-[0.18em] text-leaf-light">Keep things fresh</p>
             <h2 id="actions-title" class="mt-2 text-xl font-extrabold text-white">Quick actions</h2>
             <div class="mt-6 space-y-3">
-                <a href="{{ route('gallery-images.create') }}" class="flex items-center justify-between rounded-xl bg-white/10 px-4 py-4 text-sm font-bold transition hover:bg-white/15"><span>Upload farm photos</span><span class="text-leaf-light">+</span></a>
+                <a href="{{ route('gallery-images.create') }}" class="flex items-center justify-between rounded-xl bg-white/10 px-4 py-4 text-sm font-bold transition hover:bg-white/15"><span>Manage leadership profiles</span><span class="text-leaf-light">+</span></a>
                 <a href="{{ route('admin.services.create') }}" class="flex items-center justify-between rounded-xl bg-white/10 px-4 py-4 text-sm font-bold transition hover:bg-white/15"><span>Add a service</span><span class="text-leaf-light">+</span></a>
                 <a href="{{ route('team-members.create') }}" class="flex items-center justify-between rounded-xl bg-white/10 px-4 py-4 text-sm font-bold transition hover:bg-white/15"><span>Add a team member</span><span class="text-leaf-light">+</span></a>
                 <a href="{{ route('admin.users.create') }}" class="flex items-center justify-between rounded-xl bg-white/10 px-4 py-4 text-sm font-bold transition hover:bg-white/15"><span>Give someone access</span><span class="text-leaf-light">+</span></a>

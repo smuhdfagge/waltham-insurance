@@ -41,7 +41,7 @@
 
     <div>
         <label for="message" class="mb-2 block text-sm font-semibold text-earth">Message</label>
-        <textarea id="message" wire:model="message" rows="5" class="w-full rounded-xl border border-earth/20 bg-cream px-4 py-3 text-earth outline-none transition focus:border-leaf focus:ring-2 focus:ring-leaf/30" placeholder="Tell us about your agricultural project or enquiry."></textarea>
+        <textarea id="message" wire:model="message" rows="5" class="w-full rounded-xl border border-earth/20 bg-cream px-4 py-3 text-earth outline-none transition focus:border-leaf focus:ring-2 focus:ring-leaf/30" placeholder="Tell us about the insurance cover or risk you would like to discuss."></textarea>
         @error('message') <span class="mt-2 block text-sm text-red-600">{{ $message }}</span> @enderror
     </div>
 

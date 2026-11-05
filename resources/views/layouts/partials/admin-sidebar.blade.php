@@ -1,9 +1,9 @@
 <div>
     <a href="{{ route('dashboard') }}" class="mb-12 flex items-center gap-3">
-        <img src="{{ asset('logo.png') }}" alt="Our Family Farm Nig. Ltd. logo" class="h-11 w-14 object-contain">
+        <img src="{{ asset('logo.png') }}" alt="Waltham Insurance Brokers Ltd. logo" class="h-11 w-14 object-contain">
         <span class="leading-none">
-            <span class="block text-sm font-extrabold tracking-[0.12em]">OUR FAMILY</span>
-            <span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">Farm Nig. Ltd.</span>
+            <span class="block text-sm font-extrabold tracking-[0.12em]">WALTHAM</span>
+            <span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">Insurance Brokers Ltd.</span>
         </span>
     </a>
     <p class="mb-4 px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Workspace</p>

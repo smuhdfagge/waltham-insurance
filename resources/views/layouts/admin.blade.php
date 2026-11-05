@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="robots" content="noindex, nofollow">
-        <title>{{ $title ?? 'Admin dashboard' }} · {{ config('app.name', 'Our Family Farm') }}</title>
+        <title>{{ $title ?? 'Admin dashboard' }} · {{ config('app.name', 'Waltham Insurance') }}</title>
         <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -51,8 +51,8 @@
                             <button type="button" x-on:click="menuOpen = true" class="flex h-10 w-10 items-center justify-center rounded-xl border border-earth/15 bg-white text-earth" aria-label="Open menu">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
                             </button>
-                            <img src="{{ asset('logo.png') }}" alt="Our Family Farm Nig. Ltd. logo" class="h-9 w-12 object-contain">
-                            <span class="hidden text-xs font-extrabold tracking-[0.12em] text-earth sm:inline">OUR FAMILY FARM</span>
+                            <img src="{{ asset('logo.png') }}" alt="Waltham Insurance Brokers Ltd. logo" class="h-9 w-12 object-contain">
+                            <span class="hidden text-xs font-extrabold tracking-[0.12em] text-earth sm:inline">WALTHAM INSURANCE</span>
                         </div>
                         <div class="hidden lg:block">
                             <p class="text-xs font-bold uppercase tracking-[0.18em] text-earth-light">Admin workspace</p>

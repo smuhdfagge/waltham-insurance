@@ -21,15 +21,15 @@ class MarketingPagesTest extends TestCase
         $response = $this->get('/');
 
         $response->assertOk();
-        $response->assertSeeText('Our Family Farm');
+        $response->assertSeeText('Waltham Insurance Brokers Ltd');
     }
 
-    public function test_service_page_renders(): void
+    public function test_services_page_renders(): void
     {
-        $response = $this->get('/services/crop-production');
+        $response = $this->get('/services');
 
         $response->assertOk();
-        $response->assertSeeText('Crop Production');
+        $response->assertSeeText('Group Life Assurance');
     }
 
     public function test_contact_page_renders(): void

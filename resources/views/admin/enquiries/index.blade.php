@@ -6,7 +6,7 @@
                 <h1 class="text-3xl font-black tracking-tight text-earth sm:text-4xl">Enquiries</h1>
                 <span class="mb-1 rounded-full bg-leaf/15 px-3 py-1 text-xs font-bold text-leaf-dark">{{ $newCount }} new</span>
             </div>
-            <p class="mt-2 max-w-2xl text-sm leading-6 text-earth-light">Stay close to the people reaching out about your farm, services, and partnerships.</p>
+            <p class="mt-2 max-w-2xl text-sm leading-6 text-earth-light">Stay close to the people reaching out about your insurance needs.</p>
         </div>
         <a href="{{ route('contact') }}" class="inline-flex items-center justify-center gap-2 rounded-xl border border-earth/15 bg-white px-4 py-3 text-sm font-bold text-earth shadow-sm transition hover:border-leaf hover:text-leaf-dark">View contact page <span aria-hidden="true">↗</span></a>
     </div>

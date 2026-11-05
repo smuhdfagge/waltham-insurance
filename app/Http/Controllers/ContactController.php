@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
     public function index(): View
     {
-        return view('pages.contact');
+        return view('waltham.contact');
     }
 
     public function store(ContactRequest $request): RedirectResponse
@@ -21,10 +21,10 @@ class ContactController extends Controller
         $data = $request->validated();
 
         $submission = ContactSubmission::create([
-            'name' => $data['name'],
+            'name' => trim($data['first_name'].' '.$data['last_name']),
             'email' => $data['email'],
-            'phone' => $data['phone'],
-            'service' => $data['service'],
+            'phone' => $data['phone'] ?? '',
+            'service' => $data['subject'],
             'message' => $data['message'],
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),

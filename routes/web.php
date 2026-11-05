@@ -13,14 +13,20 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamMemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/our-team', [PageController::class, 'ourTeam'])->name('our-team');
+Route::view('/', 'waltham.home')->name('home');
+Route::view('/about', 'waltham.about')->name('about');
+Route::view('/what-we-do', 'waltham.what-we-do')->name('what-we-do');
+Route::view('/vision-mission', 'waltham.vision-mission')->name('vision-mission');
+Route::view('/directors', 'waltham.directors')->name('directors');
+Route::view('/management', 'waltham.management')->name('management');
+Route::view('/services', 'waltham.services')->name('services.index');
+Route::view('/proposal', 'waltham.proposal')->name('proposal');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
-Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
+
+// Keep previous project URLs useful while directing visitors to Waltham's pages.
+Route::redirect('/our-team', '/management', 301);
+Route::redirect('/gallery', '/directors', 301);
 
 Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth', 'verified'])

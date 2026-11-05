@@ -7,7 +7,7 @@
             <p class="text-xs font-bold uppercase tracking-[0.18em] text-leaf-dark">Message</p>
             <p class="mt-5 whitespace-pre-line text-base leading-8 text-earth/80">{{ $enquiry->message }}</p>
             <div class="mt-8 flex flex-wrap gap-3 border-t border-earth/10 pt-6">
-                <a href="mailto:{{ $enquiry->email }}?subject={{ rawurlencode('Re: your enquiry'.($enquiry->service ? ' about '.$enquiry->service : '').' – Our Family Farm') }}" class="inline-flex items-center gap-2 rounded-xl bg-leaf px-5 py-3 text-sm font-bold text-white hover:bg-leaf-dark">Reply by email <span aria-hidden="true">↗</span></a>
+                <a href="mailto:{{ $enquiry->email }}?subject={{ rawurlencode('Re: your enquiry'.($enquiry->service ? ' about '.$enquiry->service : '').' – Waltham Insurance') }}" class="inline-flex items-center gap-2 rounded-xl bg-leaf px-5 py-3 text-sm font-bold text-white hover:bg-leaf-dark">Reply by email <span aria-hidden="true">↗</span></a>
                 @if ($enquiry->phone)
                     <a href="tel:{{ preg_replace('/[^0-9+]/', '', $enquiry->phone) }}" class="inline-flex items-center gap-2 rounded-xl border border-earth/15 px-5 py-3 text-sm font-bold text-earth hover:border-leaf hover:text-leaf-dark">Call {{ $enquiry->phone }}</a>
                 @endif

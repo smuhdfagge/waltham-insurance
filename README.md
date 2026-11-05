@@ -1,61 +1,42 @@
-# Our Family Farm Nig. Ltd.
+# Waltham Insurance Brokers Ltd.
 
-Premium agricultural production and consultancy marketing website for a registered Nigerian agribusiness based in Kano with a branch in Hadejia, Jigawa State.
+Marketing website for Waltham Insurance Brokers Ltd., aligned with the public website at [waltham.com.ng](https://waltham.com.ng).
 
-## Quick Start
+## Run locally
 
-1. Copy `.env.example` to `.env` and set local database and mail values.
-2. Run `composer install`
-3. Run `npm install`
-4. Run `php artisan key:generate`
-5. Run `php artisan migrate --seed`
-6. Run `npm run build`
-7. Run `php artisan serve`
+1. Copy `.env.example` to `.env` and configure the database and mail values.
+2. Run `composer install` and `npm install`.
+3. Run `php artisan key:generate`.
+4. Run `php artisan migrate`. To seed an initial administrator, set `WALTHAM_ADMIN_EMAIL` and `WALTHAM_ADMIN_PASSWORD` in `.env`, then run `php artisan db:seed`.
+5. Run `npm run build` and `php artisan serve`.
+
+## Public pages
+
+- `/` — home
+- `/about` — company history and background
+- `/what-we-do` — approach and expertise
+- `/vision-mission` — vision and mission
+- `/directors` — board of directors
+- `/management` — management biographies
+- `/services` — insurance classes and service descriptions
+- `/proposal` — proposal process
+- `/contact` — contact details and enquiry form
+
+Public page content and the shared header/footer are copied from the corresponding public Waltham pages. The official Waltham logo is in `public/logo.png`; the matching compiled site styles and navigation script are in `public/waltham/assets`.
 
 ## Company details
 
-- Company: Our Family Farm Nig. Ltd.
-- Registration: RC 3301324
-- Head office: 11A Port Louis Close, Tudun Yola, C. Layout, Kano, Nigeria
-- Branch: Beside Nagari Café, Opposite Police Headquarters, Hadejia, Jigawa State, Nigeria
-- Phone: +234 805 806 1627
-- Email: abumuniru1@gmail.com
+- Waltham Insurance Brokers Ltd.
+- Incorporated in 1990; registration number 410208
+- Head office: 27, Mahatma Ghandi Street, off Lord Lugard Street, Area 11, Garki, FCT, Abuja
+- Phone: 08036613580 / 08067713959
+- Email: info@waltham.com.ng
+- Licensed by NAICOM; member of NCRIB
 
-## Pages and structure
+## Contact form
 
-- [resources/views/pages/home.blade.php](resources/views/pages/home.blade.php) – landing page
-- [resources/views/pages/about.blade.php](resources/views/pages/about.blade.php) – company profile
-- [resources/views/pages/contact.blade.php](resources/views/pages/contact.blade.php) – contact page and map
-- [resources/views/pages/services/index.blade.php](resources/views/pages/services/index.blade.php) – services overview
-- [resources/views/pages/services/show.blade.php](resources/views/pages/services/show.blade.php) – service detail page
-- [resources/views/pages/gallery.blade.php](resources/views/pages/gallery.blade.php) – gallery grid
-- [resources/views/components/site-layout.blade.php](resources/views/components/site-layout.blade.php) – shared layout and header/footer
-- [resources/views/components/section-heading.blade.php](resources/views/components/section-heading.blade.php) – reusable heading component
+The public form stores enquiries in the existing Laravel database and queues an email to the configured company address. Configure a working mail transport and queue worker before production use.
 
-## Adding a service or team member
+## Deployment
 
-- Add or update records in [database/seeders/DatabaseSeeder.php](database/seeders/DatabaseSeeder.php).
-- Keep the `slug` unique for each service.
-- The detail page is automatically resolved by the slug in [routes/web.php](routes/web.php).
-
-## Admin dashboard
-
-Sign in at `/login` to reach `/dashboard`. The first account comes from the seeder: `admin@example.com` / `password`. **Change this password (My profile) or add your own account and remove it before going live.**
-
-- **Overview** – content counts, enquiries over the last 14 days, enquiry status breakdown, recent enquiries and quick actions.
-- **Services, Gallery, Team** – add, edit and remove what shows on the public pages (the public page cache is cleared on every change).
-- **Enquiries** – search, filter by status, reply by email or phone, update status, remove. The sidebar shows how many are still new.
-- **Users** – everyone here can manage the site. Public sign-up is turned off; new accounts are added from **Users → Add user**. You can't remove your own account from this list, and the last remaining account can't be deleted.
-- **My profile** – change your name, email and password.
-
-## Deployment notes
-
-- Use PHP 8.2+ and Composer on a Linux VPS or shared hosting.
-- Ensure `storage` and `bootstrap/cache` are writable.
-- Set `APP_ENV=production`, `APP_DEBUG=false`, and run `php artisan optimize` before launch.
-- Run `php artisan storage:link` once so uploaded gallery and team photos show.
-- Run `npm run build` after pulling changes so the admin styles are up to date.
-
-## Notes
-
-This project follows the required premium agribusiness branding, a reusable Blade component structure, and a Livewire-based enquiry form for a modern marketing website experience.
+Use PHP 8.2+ and Composer. Set `APP_ENV=production`, `APP_DEBUG=false`, configure the database and mail transport, and ensure `storage` and `bootstrap/cache` are writable. Run `php artisan optimize` after deployment.

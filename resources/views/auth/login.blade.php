@@ -2,7 +2,7 @@
     <div class="mb-8">
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-leaf-dark">Welcome back</p>
         <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-earth">Sign in to your workspace</h2>
-        <p class="mt-2 text-sm leading-6 text-earth-light">Keep your public farm story fresh and useful.</p>
+        <p class="mt-2 text-sm leading-6 text-earth-light">Manage your public insurance website.</p>
     </div>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
